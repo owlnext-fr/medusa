@@ -30,7 +30,9 @@ void main() async {
       int issueId = await Medusa.createIssue(
         path: "/test/path",
         summary: "Test Issue",
-        description: "This is a test issue created during unit testing.",
+        issueDescription: "This is a test issue created during unit testing.",
+        stepToReproduce: "1. Step one\n2. Step two",
+        expectedBehavior: "Expected behavior description",
         severity: "minor",
         fileData: await File('test.png').readAsBytes(),
       );
