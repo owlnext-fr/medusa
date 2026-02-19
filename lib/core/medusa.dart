@@ -92,7 +92,7 @@ class Medusa {
     Map<String, dynamic> postResponse = await _instance._api.issues.create(
       summary: summary,
       description:
-          "$issueDescription\n\nPath: $path\n\nStep to Reproduce: $stepToReproduce\n\nExpected Behavior: $expectedBehavior",
+          "Description:\n$issueDescription\n\n---\n\nPath: $path\n\n---\n\nStep to Reproduce:\n$stepToReproduce\n\n---\n\nExpected Behavior:\n$expectedBehavior",
       project: _instance._project,
       category: _instance._category,
       severity: severity,
