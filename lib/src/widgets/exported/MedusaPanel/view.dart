@@ -165,6 +165,7 @@ mixin _DesktopViewMixin {
         mainAxisSize: MainAxisSize.min,
         spacing: state._gap * 2,
         children: [
+          SizedBox(height: state._gap),
           TextFieldInput(
             value: state._summary,
             label: 'Résumé',
