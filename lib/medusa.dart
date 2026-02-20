@@ -5,9 +5,6 @@ export 'core/medusa.dart' show Medusa;
 export 'src/debug/medusa_debugger.dart' show MedusaDebugger;
 // ----------------------- Utils ---------------------
 
-// ----------------------- Notifiers ---------------------
-export 'src/notifiers/screener_notifier.dart' show ScreenerController;
-
 // --------------------- Widgets ---------------------
 export 'src/widgets/exported/MedusaScreenerPanel/view_model.dart' show MedusaScreenerPanelWidget;
 export 'src/widgets/exported/MedusaScreenerPanel/styling/medusa_screener_panel_style.dart' show MedusaScreenerPanelStyle;

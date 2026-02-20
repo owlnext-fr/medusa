@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:medusa/medusa.dart';
-import 'package:medusa/src/widgets/exported/MedusaScreenerPanel/styling/medusa_screener_panel_style.dart';
+import 'package:medusa/src/notifiers/screener_notifier.dart';
 import 'package:medusa/src/widgets/private/ScreenerWidget/screener_widget.dart';
 import 'package:medusa/src/widgets/private/SelectInput/view_model.dart';
 import 'package:medusa/src/widgets/private/TextfieldInput/view_model.dart';
