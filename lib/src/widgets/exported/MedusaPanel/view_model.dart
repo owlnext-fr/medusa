@@ -40,7 +40,6 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
 
   /// ---- State -----
   bool _isPanelOpen = false;
-  bool _isCapturing = false;
   bool _isPublishing = false;
   String? _error;
 
@@ -88,7 +87,6 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
         if(mounted) {
           setState(() {
             _error = null;
-            _isCapturing = true;
             _isPanelOpen = false;
           });
         }
@@ -101,7 +99,6 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
             _path = ModalRoute.of(context)?.settings.name ?? '';
             _capturedImage = capturedBytes;
             _isPanelOpen = true;
-            _isCapturing = false;
           });
         }
       },
@@ -110,7 +107,6 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
         if (mounted) {
           setState(() {
             _capturedImage = null;
-            _isCapturing = false;
             _isPanelOpen = true;
             _error = "Erreur lors de la capture d'écran";
           });
