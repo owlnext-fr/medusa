@@ -7,7 +7,7 @@ mixin _DesktopViewMixin {
 
     if(state.widget.config?.customChild != null) {
       return GestureDetector(
-        onTap: () => ScreenerController.instance.triggerCapture(),
+        onTap: state._onPressed,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: state.widget.config!.customChild!,
@@ -16,7 +16,7 @@ mixin _DesktopViewMixin {
     }
 
     return  ElevatedButton(
-      onPressed: () => ScreenerController.instance.triggerCapture(),
+      onPressed: state._onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         spacing: 8,

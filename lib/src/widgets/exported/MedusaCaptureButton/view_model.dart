@@ -33,6 +33,13 @@ class _MedusaCaptureButtonState extends State<MedusaCaptureButton> with _Desktop
     super.dispose();
   }
 
+  void _onPressed() {
+    try {
+      ScreenerController.instance.triggerCapture();
+    } catch (e) {
+      debugPrint("Error during capture: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

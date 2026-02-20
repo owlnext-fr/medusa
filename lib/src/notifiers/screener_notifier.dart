@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:medusa/medusa.dart';
 
 /// Controller for managing screenshot captures using Streams.
 /// Uses proper singleton pattern with `instance` getter.
@@ -23,19 +24,20 @@ class ScreenerController {
 
   /// Triggers a new capture. Call this from anywhere in the app.
   void triggerCapture() {
-    debugPrint("[ScreenerController] ✅ Capture triggered");
+    _print("[ScreenerController] ✅ Capture triggered");
     _captureController.add(null); // null = new capture request
-  }
-
-  /// Sets the capture result. Called by MedusaPanel after capturing.
-  void setCaptureResult(Uint8List? bytes) {
-    debugPrint("[ScreenerController] 📸 Capture result set (${bytes != null ? 'success' : 'failed'})");
-    _captureController.add(bytes);
   }
 
   /// Cleans up resources. Call this when the app is disposed.
   void dispose() {
     _captureController.close();
-    debugPrint("[ScreenerController] 🗑️ Disposed");
+    _print("[ScreenerController] 🗑️ Disposed");
+  }
+
+  void _print(String message) {
+    if(kDebugMode && MedusaDebugger.kDebugMedusa) {
+      // ignore: avoid_print
+      print("[ScreenerController] $message");
+    }
   }
 }
