@@ -227,9 +227,12 @@ mixin _DesktopViewMixin {
           child: Text('Fermer'),
         ),
         Spacer(),
-        ElevatedButton(
-          onPressed: state._publish,
-          child: Text('Publier'),
+        IgnorePointer(
+          ignoring: state._isPublishing,
+          child: ElevatedButton(
+            onPressed: state._publish,
+            child: Text('Publier'),
+          ),
         ),
       ],
     );
