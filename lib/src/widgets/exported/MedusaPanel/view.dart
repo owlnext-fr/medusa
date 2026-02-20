@@ -9,6 +9,7 @@ mixin _DesktopViewMixin {
       /// If the panel is not open, we just render the child widget without the Stack 
       /// to avoid unnecessary rebuilds and potential performance issues.
       return Stack(
+        clipBehavior: Clip.none,
         children: [
           state.widget.child,
           /// app-side child widget
@@ -36,7 +37,7 @@ mixin _DesktopViewMixin {
 
     return Container(
       width: state.widget.panelConfig?.width ?? 600,
-      padding: state.widget.panelConfig?.padding ?? EdgeInsets.all(state._gap),
+      padding: state.widget.panelConfig?.padding ?? EdgeInsets.all(state._gap * 2),
       decoration: state.widget.panelConfig?.decoration ?? BoxDecoration(
         color: cs.surface,
         boxShadow: [
@@ -56,6 +57,17 @@ mixin _DesktopViewMixin {
           if(state._error != null)
           _renderError(context, state),
           // Fields list
+          if(state._isPublishing)
+          Expanded(child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: state._gap * 2),
+              Center(child: CircularProgressIndicator()),
+            ],
+          ))
+          else
           Expanded(
             child: ListView(
               padding: EdgeInsets.only(right: 8.0), // add some right padding for scrollbar
@@ -63,7 +75,7 @@ mixin _DesktopViewMixin {
                 _renderFields(context, state),
               ],
             ),
-          ),
+          ), 
           /// Actions
           _renderBottomActions(context, state),
         ],
@@ -72,6 +84,7 @@ mixin _DesktopViewMixin {
   }
 
   /// Display the captured image in the panel with a delete button
+  // ignore: unused_element
   Widget _renderCapturedImage(BuildContext context, _MedusaScreenerPanelState state) {
     final TextTheme tt = Theme.of(context).textTheme;
     final ColorScheme cs = Theme.of(context).colorScheme;
@@ -184,8 +197,10 @@ mixin _DesktopViewMixin {
             items: state._severityItems,
             onChanged: (val) => state._severity = val,
           ),
+          /*
           if(state._capturedImage!= null)
           _renderCapturedImage(context, state),
+          */
         ],
       ),
     );

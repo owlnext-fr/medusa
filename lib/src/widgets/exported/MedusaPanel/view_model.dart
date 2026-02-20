@@ -170,7 +170,7 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
       _print("Error during publishing: $e");
       if(mounted) {
         setState(() {
-          _error = "Error during publishing";
+          _error = "Erreur lors de la publication";
         });
       }
     } finally {
