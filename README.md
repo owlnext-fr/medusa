@@ -117,5 +117,36 @@ Paramètres de `Medusa.ping` :
 
 ## Widgets frontend
 
-TBD
+### MedusaCaptureButton
+Widget qui sert de déclencheur pour capturer l'écran. 
+
+Description :
+
+Peut être placé n'importe où dans l'application.
+Déclenche une capture d'écran si un MedusaScreenerPanel est présent dans l'arborescence des widgets.
+Affiche un bouton cliquable pour déclencher la capture.
+
+Utilisation :
+```dart
+MedusaCaptureButton()
+```
+
+### MedusaScreenerPanel:
+
+Widget principal qui encapsule la partie de l'interface à capturer. Il gère la capture d'écran et l'affichage du panneau latéral.
+
+Description :
+
+Doit être placé à un niveau élevé dans l'arborescence des widgets (par exemple, dans le Layout, les pages principales, ou le widget racine).
+Capture toute l'arborescence des widgets enfants.
+Attention : Ne pas utiliser plusieurs MedusaScreenerPanel dans le même arbre de widgets. Un seul MedusaScreenerPanel est autorisé.
+
+Utilisation :
+```dart
+MedusaScreenerPanel(
+  child: ...YourWidgetTreeToCapture(),
+)
+```
+
+
 

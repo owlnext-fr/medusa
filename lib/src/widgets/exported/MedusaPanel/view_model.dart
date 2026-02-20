@@ -87,6 +87,7 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
 
         if(mounted) {
           setState(() {
+            _error = null;
             _isCapturing = true;
             _isPanelOpen = false;
           });
