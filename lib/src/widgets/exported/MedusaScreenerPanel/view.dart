@@ -3,13 +3,13 @@ part of 'view_model.dart';
 
 
 mixin _DesktopViewMixin {
-  Widget _renderDesktop(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderDesktop(BuildContext context, _MedusaScreenerPanelWidgetState state) {
 
     if(state._isPanelOpen == true) {
       /// If the panel is not open, we just render the child widget without the Stack 
       /// to avoid unnecessary rebuilds and potential performance issues.
       return Stack(
-        clipBehavior: Clip.none,
+        clipBehavior: Clip.none, // for panel boxShadows to be visible
         children: [
           state.widget.child,
           /// app-side child widget
@@ -25,6 +25,9 @@ mixin _DesktopViewMixin {
       );
     }
 
+    // If the panel is not open,
+    // we just render the child widget without the Stack 
+    // but ready for screenshoting
     return ScreenerWidget(
       key: state._screenerKey,
       child: state.widget.child,
@@ -32,7 +35,7 @@ mixin _DesktopViewMixin {
   }
 
   /// Affiche le panneau avec l'image capturée.
-  Widget _renderPanel(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderPanel(BuildContext context, _MedusaScreenerPanelWidgetState state) {
     final ColorScheme cs = Theme.of(context).colorScheme;
 
     return Container(
@@ -85,7 +88,7 @@ mixin _DesktopViewMixin {
 
   /// Display the captured image in the panel with a delete button
   // ignore: unused_element
-  Widget _renderCapturedImage(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderCapturedImage(BuildContext context, _MedusaScreenerPanelWidgetState state) {
     final TextTheme tt = Theme.of(context).textTheme;
     final ColorScheme cs = Theme.of(context).colorScheme;
     if (state._capturedImage == null) return const SizedBox.shrink();
@@ -141,7 +144,7 @@ mixin _DesktopViewMixin {
     );
   }
 
-  Widget _renderTitle(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderTitle(BuildContext context, _MedusaScreenerPanelWidgetState state) {
     final TextTheme tt = Theme.of(context).textTheme;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -158,7 +161,7 @@ mixin _DesktopViewMixin {
   }
 
   /// Renders the input fields for the issue details (e.g., path, summary, description).
-  Widget _renderFields(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderFields(BuildContext context, _MedusaScreenerPanelWidgetState state) {
     return Form(
       key: state._formKey,
       child: Column(
@@ -207,7 +210,7 @@ mixin _DesktopViewMixin {
     );
   }
 
-  Widget _renderError(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderError(BuildContext context, _MedusaScreenerPanelWidgetState state) {
     final TextTheme tt = Theme.of(context).textTheme;
     final ColorScheme cs = Theme.of(context).colorScheme;
     if(state._error == null) return SizedBox.shrink();
@@ -233,7 +236,7 @@ mixin _DesktopViewMixin {
   }
 
   /// Renders the action buttons at the bottom of the panel (e.g., Publish, Close).
-  Widget _renderBottomActions(BuildContext context, _MedusaScreenerPanelState state) {
+  Widget _renderBottomActions(BuildContext context, _MedusaScreenerPanelWidgetState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       spacing: 12.0,

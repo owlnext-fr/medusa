@@ -117,7 +117,7 @@ Paramètres de `Medusa.ping` :
 
 ## Widgets frontend
 
-### MedusaCaptureButton
+### MedusaCaptureButtonWidget
 Widget qui sert de déclencheur pour capturer l'écran. 
 
 Description :
@@ -128,10 +128,10 @@ Affiche un bouton cliquable pour déclencher la capture.
 
 Utilisation :
 ```dart
-MedusaCaptureButton()
+MedusaCaptureButtonWidget()
 ```
 
-### MedusaScreenerPanel:
+### MedusaScreenerPanelWidget:
 
 Widget principal qui encapsule la partie de l'interface à capturer. Il gère la capture d'écran et l'affichage du panneau latéral.
 
@@ -143,7 +143,7 @@ Attention : Ne pas utiliser plusieurs MedusaScreenerPanel dans le même arbre de
 
 Utilisation :
 ```dart
-MedusaScreenerPanel(
+MedusaScreenerPanelWidget(
   child: ...YourWidgetTreeToCapture(),
 )
 ```

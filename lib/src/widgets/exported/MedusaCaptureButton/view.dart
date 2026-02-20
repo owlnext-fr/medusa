@@ -3,7 +3,7 @@ part of 'view_model.dart';
 
 
 mixin _DesktopViewMixin {
-  Widget _render(BuildContext context, _MedusaCaptureButtonState state) {
+  Widget _render(BuildContext context, _MedusaCaptureButtonWidgetState state) {
 
     if(state.widget.config?.customChild != null) {
       return GestureDetector(

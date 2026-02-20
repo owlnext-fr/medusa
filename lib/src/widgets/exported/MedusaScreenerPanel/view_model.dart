@@ -5,31 +5,33 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:medusa/medusa.dart';
+import 'package:medusa/src/widgets/exported/MedusaCaptureButton/styling/capture_button_styling.dart';
+import 'package:medusa/src/widgets/exported/MedusaScreenerPanel/styling/panel_styling_config.dart';
 import 'package:medusa/src/widgets/private/ScreenerWidget/screener_widget.dart';
 import 'package:medusa/src/widgets/private/SelectInput/view_model.dart';
 import 'package:medusa/src/widgets/private/TextfieldInput/view_model.dart';
 part 'view.dart';
 
-class MedusaScreenerPanel extends StatefulWidget {
+class MedusaScreenerPanelWidget extends StatefulWidget {
 
-  /// The configuration for the MedusaScreenerPanel widget.
-  final PanelConfig? panelConfig;
+  /// The configuration for the MedusaScreenerPanelWidget widget.
+  final MedusaScreenerPanelStyle? panelConfig;
 
   final Widget child;
 
-  const MedusaScreenerPanel({
+  const MedusaScreenerPanelWidget({
     super.key,
     this.panelConfig,
     required this.child,
   });
 
   @override
-  State<MedusaScreenerPanel> createState() {
-    return _MedusaScreenerPanelState();
+  State<MedusaScreenerPanelWidget> createState() {
+    return _MedusaScreenerPanelWidgetState();
   }
 }
 
-class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _DesktopViewMixin {
+class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> with _DesktopViewMixin {
 
   final double _gap = 8.0;
 
@@ -210,7 +212,7 @@ class _MedusaScreenerPanelState extends State<MedusaScreenerPanel> with _Desktop
   void _print(String message) {
     if(kDebugMode && MedusaDebugger.kDebugMedusa) {
       // ignore: avoid_print
-      print("[MedusaScreenerPanel] $message");
+      print("[MedusaScreenerPanelWidget] $message");
     }
   }
 }

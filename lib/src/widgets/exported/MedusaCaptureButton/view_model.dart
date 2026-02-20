@@ -1,26 +1,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:medusa/src/notifiers/screener_notifier.dart';
-import 'package:medusa/src/widgets/exported/MedusaPanel/config/style_configs.dart';
+import 'package:medusa/src/widgets/exported/MedusaCaptureButton/styling/capture_button_styling.dart';
 part 'view.dart';
 
-class MedusaCaptureButton extends StatefulWidget {
+class MedusaCaptureButtonWidget extends StatefulWidget {
 
-  /// The configuration for the MedusaCaptureButton widget.
-  final CaptureButtonConfig? config;
+  /// The configuration for the MedusaCaptureButtonWidget widget.
+  final CaptureButtonStyle? config;
 
-  const MedusaCaptureButton({
+  const MedusaCaptureButtonWidget({
     super.key,
     this.config,
   });
 
   @override
-  State<MedusaCaptureButton> createState() {
-    return _MedusaCaptureButtonState();
+  State<MedusaCaptureButtonWidget> createState() {
+    return _MedusaCaptureButtonWidgetState();
   }
 }
 
-class _MedusaCaptureButtonState extends State<MedusaCaptureButton> with _DesktopViewMixin {
+class _MedusaCaptureButtonWidgetState extends State<MedusaCaptureButtonWidget> with _DesktopViewMixin {
 
 
   @override
