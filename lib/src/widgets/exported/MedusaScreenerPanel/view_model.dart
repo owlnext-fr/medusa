@@ -1,12 +1,9 @@
 
 import 'dart:async';
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:medusa/medusa.dart';
-import 'package:medusa/src/widgets/exported/MedusaCaptureButton/styling/capture_button_styling.dart';
-import 'package:medusa/src/widgets/exported/MedusaScreenerPanel/styling/panel_styling_config.dart';
+import 'package:medusa/src/widgets/exported/MedusaScreenerPanel/styling/medusa_screener_panel_style.dart';
 import 'package:medusa/src/widgets/private/ScreenerWidget/screener_widget.dart';
 import 'package:medusa/src/widgets/private/SelectInput/view_model.dart';
 import 'package:medusa/src/widgets/private/TextfieldInput/view_model.dart';
