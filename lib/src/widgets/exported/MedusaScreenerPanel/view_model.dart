@@ -14,11 +14,25 @@ class MedusaScreenerPanelWidget extends StatefulWidget {
   /// The configuration for the MedusaScreenerPanelWidget widget.
   final MedusaScreenerPanelStyle? panelConfig;
 
+  /// The full path of the current route, used for issue context.
+  /// for GoRouter, you can pass 
+  /// ```dart
+  /// GoRouterState.of(context).fullPath
+  /// ``` 
+  /// here. 
+  /// For Navigator, you can pass 
+  /// ```dart 
+  /// ModalRoute.of(context)?.settings.name
+  /// ```
+  /// here.
+  final String? routerFullPath;
+
   final Widget child;
 
   const MedusaScreenerPanelWidget({
     super.key,
     this.panelConfig,
+    required this.routerFullPath,
     required this.child,
   });
 
@@ -63,6 +77,7 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
   void initState() {
     super.initState();
     _initCaptureSubscription();
+    
   }
 
   @override
@@ -80,6 +95,7 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
   /// to call when the widget is initialized.
   void _initCaptureSubscription() {
      _captureSubscription = ScreenerController.instance.captureResults.listen(
+      /// When a capture event is received, we first check if it's a request (null) or a result (non-null bytes).
       (bytes) async {
         _print("🔍 Capture event received: ${bytes == null ? 'REQUEST' : 'RESULT'}");
 
@@ -91,13 +107,14 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
         }
         // Capture requested
         final Uint8List? capturedBytes = await _captureRequest();
-        
+
         if(mounted) {
           // Capture result received
           setState(() {
-            _path = ModalRoute.of(context)?.settings.name ?? '';
+            _path = widget.routerFullPath ?? 'NA';
             _capturedImage = capturedBytes;
             _isPanelOpen = true;
+            _print( "📸 Capture completed, path: $_path, image size: ${capturedBytes != null ? capturedBytes.lengthInBytes : 'null'} bytes");
           });
         }
       },

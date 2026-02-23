@@ -144,7 +144,8 @@ Attention : Ne pas utiliser plusieurs MedusaScreenerPanel dans le même arbre de
 Utilisation :
 ```dart
 MedusaScreenerPanelWidget(
-  child: ...YourWidgetTreeToCapture(),
+	routerFullPath: GoRouterState.of(context).fullPath, //For GoRouter routing implementations
+    child: ...YourWidgetTreeToCapture(),
 )
 ```
 

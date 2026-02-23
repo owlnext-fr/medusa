@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:medusa/medusa.dart';
 
+/// Widget that can capture its own rendered image as a PNG byte array.
+/// This widget uses a RepaintBoundary to isolate the part of the widget tree that should be captured.
+/// The captureCurrentView() method can be called to capture the current view of the widget as a PNG image in Uint8List format.
 class ScreenerWidget extends StatefulWidget {
   final Widget child;
 
