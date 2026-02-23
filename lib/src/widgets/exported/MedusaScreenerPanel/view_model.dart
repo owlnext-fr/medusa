@@ -28,12 +28,15 @@ class MedusaScreenerPanelWidget extends StatefulWidget {
   /// here.
   final String? routerFullPath;
 
+  final bool isMobileView;
+
   final Widget child;
 
   const MedusaScreenerPanelWidget({
     super.key,
     this.panelConfig,
     required this.routerFullPath,
+    required this.isMobileView,
     required this.child,
   });
 
@@ -247,6 +250,9 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
   
   @override
   Widget build(BuildContext context) {
+    if(widget.isMobileView) {
+      return _renderMobile(context, this);
+    }
     return _renderDesktop(context, this);
   }
 

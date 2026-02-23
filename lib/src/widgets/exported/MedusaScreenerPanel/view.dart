@@ -21,18 +21,52 @@ mixin _DesktopViewMixin {
           right: 0,
           bottom: 0,
           left: null,
-          child: _renderPanel(context, state)
+          child: _renderGenericPanel(
+            context, 
+            state, 
+            isMobile: false
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _renderMobile(BuildContext context, _MedusaScreenerPanelWidgetState state) {
+    return Stack(
+      clipBehavior: Clip.none, // for panel boxShadows to be visible
+      children: [
+        RepaintBoundary(
+          key: state._screenerKey,
+          child: KeyedSubtree(
+            key: const Key('medusa_screener_panel_child'),
+            child: state.widget.child,
+          ),
+        ),
+        /// app-side child widget
+        if(state._isPanelOpen)
+        Positioned(
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: _renderGenericPanel(
+            context, 
+            state, 
+            isMobile: true,
+          ),
         ),
       ],
     );
   }
 
   /// Affiche le panneau avec l'image capturée.
-  Widget _renderPanel(BuildContext context, _MedusaScreenerPanelWidgetState state) {
+  Widget _renderGenericPanel(BuildContext context, _MedusaScreenerPanelWidgetState state, {required bool isMobile}) {
     final ColorScheme cs = Theme.of(context).colorScheme;
 
+    final double finalPanelWidth = state.widget.panelConfig?.width ?? 600;
+
     return Container(
-      width: state.widget.panelConfig?.width ?? 600,
+      width: finalPanelWidth,
       padding: state.widget.panelConfig?.padding ?? EdgeInsets.all(state._gap * 2),
       decoration: state.widget.panelConfig?.decoration ?? BoxDecoration(
         color: cs.surface,

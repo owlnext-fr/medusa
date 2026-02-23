@@ -145,6 +145,7 @@ Utilisation :
 ```dart
 MedusaScreenerPanelWidget(
 	routerFullPath: GoRouterState.of(context).fullPath, //For GoRouter routing implementations
+	isMobileView: isMobileView(context), // or any boolean that defines if isMobile view
     child: ...YourWidgetTreeToCapture(),
 )
 ```
