@@ -1,10 +1,11 @@
 
 import 'dart:async';
+import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:medusa/medusa.dart';
 import 'package:medusa/src/notifiers/screener_notifier.dart';
-import 'package:medusa/src/widgets/private/ScreenerWidget/screener_widget.dart';
 import 'package:medusa/src/widgets/private/SelectInput/view_model.dart';
 import 'package:medusa/src/widgets/private/TextfieldInput/view_model.dart';
 part 'view.dart';
@@ -48,7 +49,7 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
 
   /// --- Screen capture ----
   StreamSubscription<Uint8List?>? _captureSubscription;
-  final GlobalKey<ScreenerWidgetState> _screenerKey = GlobalKey();
+  final GlobalKey<_MedusaScreenerPanelWidgetState> _screenerKey = GlobalKey();
   Uint8List? _capturedImage;
 
   /// ---- State -----
@@ -106,7 +107,7 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
           });
         }
         // Capture requested
-        final Uint8List? capturedBytes = await _captureRequest();
+        final Uint8List? capturedBytes = await _getScreenCapture();
 
         if(mounted) {
           // Capture result received
@@ -131,12 +132,32 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
     );
   }
 
-  Future<Uint8List?> _captureRequest() async {
+  Future<Uint8List?> _getScreenCapture() async {
+    if (!mounted) return null;
     try {
-      final ScreenerWidgetState screenerState = _screenerKey.currentState!;
-      return await screenerState.captureCurrentView();
+      // Verify again that the widget is still mounted before accessing context
+      if (!mounted) return null;
+      final context = this.context;
+      if(!context.mounted) return null;
+      final BuildContext? boundaryContext = _screenerKey.currentContext;
+      if (boundaryContext == null) {
+        _print("RepaintBoundary not found in the widget tree");
+        return null;
+      }
+
+      final RenderObject? renderObject = boundaryContext.findRenderObject();
+      if (renderObject is! RenderRepaintBoundary) {
+        _print("The RenderObject is not a RenderRepaintBoundary");
+        return null;
+      }
+
+      // Capture the image
+      final image = await renderObject.toImage(pixelRatio: MediaQuery.of(context).devicePixelRatio);
+      final byteData = await image.toByteData(format: ImageByteFormat.png);
+
+      return byteData?.buffer.asUint8List();
     } catch (e) {
-      _print("Error during _captureRequest(): $e");
+      _print("Error during _getScreenCapture(): $e");
       return null;
     }
   }
@@ -147,6 +168,12 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
         _capturedImage = null;
       });
     }
+  }
+
+  /// Capture widget image as Uint8List (PNG format) and return it. 
+  /// Returns null if capture fails or if the widget is not mounted.
+  Future<Uint8List?> _captureCurrentView() async {
+    
   }
 
   /// Publishes the captured image and fields to the backend

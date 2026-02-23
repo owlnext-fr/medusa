@@ -4,33 +4,26 @@ part of 'view_model.dart';
 
 mixin _DesktopViewMixin {
   Widget _renderDesktop(BuildContext context, _MedusaScreenerPanelWidgetState state) {
-
-    if(state._isPanelOpen == true) {
-      /// If the panel is not open, we just render the child widget without the Stack 
-      /// to avoid unnecessary rebuilds and potential performance issues.
-      return Stack(
-        clipBehavior: Clip.none, // for panel boxShadows to be visible
-        children: [
-          state.widget.child,
-          /// app-side child widget
-          if(state._isPanelOpen)
-          Positioned(
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: null,
-            child: _renderPanel(context, state)
+    return Stack(
+      clipBehavior: Clip.none, // for panel boxShadows to be visible
+      children: [
+        RepaintBoundary(
+          key: state._screenerKey,
+          child: KeyedSubtree(
+            key: const Key('medusa_screener_panel_child'),
+            child: state.widget.child,
           ),
-        ],
-      );
-    }
-
-    // If the panel is not open,
-    // we just render the child widget without the Stack 
-    // but ready for screenshoting
-    return ScreenerWidget(
-      key: state._screenerKey,
-      child: state.widget.child,
+        ),
+        /// app-side child widget
+        if(state._isPanelOpen)
+        Positioned(
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: null,
+          child: _renderPanel(context, state)
+        ),
+      ],
     );
   }
 
