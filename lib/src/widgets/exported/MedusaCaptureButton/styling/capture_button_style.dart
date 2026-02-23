@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 /// Includes options for the icon, color, size, and positioning of the button on the screen.
 class CaptureButtonStyle {
   final String? buttonText;
+  final Color? buttonColor;
+  final EdgeInsetsGeometry? buttonPadding;
+  final BorderRadiusGeometry? buttonBorderRadius;
   final IconData? icon;
   final Color? iconColor;
   final double? iconSize;
@@ -12,6 +15,9 @@ class CaptureButtonStyle {
 
   CaptureButtonStyle({
     this.buttonText,
+    this.buttonColor,
+    this.buttonPadding,
+    this.buttonBorderRadius,
     this.icon,
     this.iconColor,
     this.iconSize,
