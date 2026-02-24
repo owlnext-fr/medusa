@@ -173,12 +173,6 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
     }
   }
 
-  /// Capture widget image as Uint8List (PNG format) and return it. 
-  /// Returns null if capture fails or if the widget is not mounted.
-  Future<Uint8List?> _captureCurrentView() async {
-    
-  }
-
   /// Publishes the captured image and fields to the backend
   Future<void> _publish() async {
 
