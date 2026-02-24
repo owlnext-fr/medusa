@@ -26,7 +26,7 @@ class MedusaScreenerPanelWidget extends StatefulWidget {
   /// ModalRoute.of(context)?.settings.name
   /// ```
   /// here.
-  final String? routerFullPath;
+  final String? matchedLocation;
 
   final bool isMobileView;
 
@@ -35,7 +35,7 @@ class MedusaScreenerPanelWidget extends StatefulWidget {
   const MedusaScreenerPanelWidget({
     super.key,
     this.panelConfig,
-    required this.routerFullPath,
+    required this.matchedLocation,
     required this.isMobileView,
     required this.child,
   });
@@ -115,7 +115,7 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
         if(mounted) {
           // Capture result received
           setState(() {
-            _path = widget.routerFullPath ?? 'NA';
+            _path = widget.matchedLocation ?? 'NA';
             _capturedImage = capturedBytes;
             _isPanelOpen = true;
             _print( "📸 Capture completed, path: $_path, image size: ${capturedBytes != null ? capturedBytes.lengthInBytes : 'null'} bytes");

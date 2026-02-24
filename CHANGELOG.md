@@ -1,3 +1,6 @@
+## 0.0.2
+- Renamed [routerFullPath] property to [matchedLocation]
+
 ## 0.0.1
 initial publish with access to
 
