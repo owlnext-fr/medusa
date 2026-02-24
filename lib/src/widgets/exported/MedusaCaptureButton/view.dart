@@ -29,7 +29,7 @@ mixin _DesktopViewMixin {
         backgroundColor: state.widget.config?.buttonColor ?? Theme.of(context).colorScheme.primary,
         padding: state.widget.config?.buttonPadding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         shape: RoundedRectangleBorder(
-          borderRadius: state.widget.config?.buttonBorderRadius ?? BorderRadius.circular(4),
+          borderRadius: state.widget.config?.buttonBorderRadius ?? BorderRadius.circular(100),
         ),
       ),
       child: Row(
