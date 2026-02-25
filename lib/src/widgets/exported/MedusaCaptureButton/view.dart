@@ -4,6 +4,10 @@ part of 'view_model.dart';
 
 mixin _DesktopViewMixin {
   Widget _render(BuildContext context, _MedusaCaptureButtonWidgetState state) {
+    if (Medusa.getIsInitialized == false) {
+      return const SizedBox.shrink();
+    }
+    
     if(state.widget.config?.customChild != null) {
       return _renderCustomButton(context, state);
     }

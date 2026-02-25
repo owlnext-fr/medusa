@@ -98,6 +98,10 @@ class _MedusaScreenerPanelWidgetState extends State<MedusaScreenerPanelWidget> w
 
   /// to call when the widget is initialized.
   void _initCaptureSubscription() {
+    if (Medusa.getIsInitialized == false) {
+      return;
+    }
+    
      _captureSubscription = ScreenerController.instance.captureResults.listen(
       /// When a capture event is received, we first check if it's a request (null) or a result (non-null bytes).
       (bytes) async {

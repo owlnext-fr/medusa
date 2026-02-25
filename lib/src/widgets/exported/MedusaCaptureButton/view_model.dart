@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:medusa/medusa.dart';
 import 'package:medusa/src/notifiers/screener_notifier.dart';
 import 'package:medusa/src/widgets/exported/MedusaCaptureButton/styling/capture_button_style.dart';
 part 'view.dart';

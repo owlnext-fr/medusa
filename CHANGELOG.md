@@ -1,3 +1,6 @@
+## 0.0.3
+- Added an [isInitialized] property to check if the package init correctly. If not, nothing appears and the app loads normally
+
 ## 0.0.2
 - Renamed [routerFullPath] property to [matchedLocation]
 

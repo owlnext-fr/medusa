@@ -17,6 +17,7 @@ class Medusa {
 
   late String _project;
   late String _category;
+  bool isInitialized = false;
 
   /// Returns the singleton [Medusa] instance and configures its API client.
   ///
@@ -53,6 +54,12 @@ class Medusa {
       environment: environment,
       debugCallback: debugCallback,
     );
+
+    _instance.isInitialized = true;
+  }
+
+  static bool get getIsInitialized {
+    return _instance.isInitialized;
   }
 
   /// Performs a connectivity check against the Mantis API.

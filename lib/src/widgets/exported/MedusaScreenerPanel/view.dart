@@ -4,6 +4,10 @@ part of 'view_model.dart';
 
 mixin _DesktopViewMixin {
   Widget _renderDesktop(BuildContext context, _MedusaScreenerPanelWidgetState state) {
+    if (Medusa.getIsInitialized == false) {
+      return state.widget.child;
+    }
+
     return Stack(
       clipBehavior: Clip.none, // for panel boxShadows to be visible
       children: [
@@ -32,6 +36,10 @@ mixin _DesktopViewMixin {
   }
 
   Widget _renderMobile(BuildContext context, _MedusaScreenerPanelWidgetState state) {
+    if (Medusa.getIsInitialized == false) {
+      return state.widget.child;
+    }
+    
     return Stack(
       clipBehavior: Clip.none, // for panel boxShadows to be visible
       children: [
